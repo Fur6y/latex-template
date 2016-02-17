@@ -1,0 +1,158 @@
+% Allgemeine Dokument Einstellungen
+\documentclass[
+	12pt,				% Schriftgröße (12pt)
+	a4paper,			% Papierformat (a4)
+	oneside,			% Drucklayout (einseitig bedruckt)
+	ngerman,			% Sprache (deutsch, neue Rechtschreibung), globale Sprachoption für "babel"
+	titlepage,			% Titelblatt (ja)
+	bibliography=totoc  % fügt das Literaturverzeichnis ins Inhaltsverzeichnis ein
+	%draft				% DEBUG, markiert fehlerhafte Zeilen rot
+]{scrartcl}				% Koma-Script Dokumenttyp "article"
+
+\KOMAoptions{
+	twoside=false,
+	headinclude=true,
+	footinclude=true,
+	DIV=calc % legt Wert zur Blattaufteilung bei der Berechnung des Satzspiegels fest
+}
+
+% Sprache, Silbentrennung
+\usepackage[ngerman]{babel}
+\usepackage[babel,german=guillemets]{csquotes}
+
+% westeuropäischer Zeichenkodierung
+\usepackage[T1]{fontenc}
+% Zeichenkodierung UTF-8
+\usepackage[utf8]{inputenc}
+% Latin Modern Font (Nachfolger von Computer Modern)
+\usepackage{lmodern}
+
+% Microtypografie Anpassungen
+\usepackage{microtype}
+
+% ermöglicht das Ausgeben eines Kapiteltitels
+\usepackage{titleref}
+
+% Literaturverzeichnis mit Biblatex
+\usepackage[
+	backend=bibtex,
+	bibencoding=utf8,
+	sortcites=true,
+	style=alphabetic,
+	natbib=true,
+	block=space,
+	url=true,
+	language=german
+]{biblatex}
+% Quellen.bib einbinden
+\addbibresource{Quellen.bib}
+
+% um Grafiken einbinden zu können
+\usepackage[final]{graphicx}
+
+% textumflossene Objekte, wie z.B. Bilder
+\usepackage{wrapfig}
+
+% zum Anlegen von Abkürzungen / Abkürzungsverzeichnis
+% Optionen: printonlyused, withpage
+\usepackage{acronym}
+
+% legt Variablen für die Dokumentdaten (Titel, Author und Datum) an
+\usepackage{titling}
+
+% Paket für Textfarben
+\usepackage{xcolor}
+
+% Mehrspaltig
+\usepackage{multicol}
+
+% Seitennummerierung (roman, arabic)
+\pagenumbering{arabic}
+
+% Zeilenabstand auf 1,5fach
+\linespread{1.5}
+
+% Einrücktiefe der ersten Zeile eines Absatzes
+\setlength{\parindent}{0pt}
+
+% verhindert eine einzelne Zeile am Anfang des Absatzes (Schusterjungen)
+\clubpenalty = 10000
+% verhindert eine einzelne Zeile am Ende des Absatzes (Hurenkinder)
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+% Packet für Seitenrandabständex und Einstellung für Seitenränder
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	includehead,
+	left=2.5cm,
+	right=3cm,
+	top=2.5cm,
+	bottom=3cm,			% Abstand unten (bis zum Text)
+	headheight=10pt,	% Höhe der Kopfzeile
+	headsep=2.5em, 		% Abstand zwischen Kopfzeile und Text
+	footskip=1cm,		% Höhe der Fusszeile
+	voffset=0mm,
+	hoffset=0mm
+}
+% Packet zum Ausgeben der aktuellen Layouteinstellungen
+\usepackage{layout}
+
+% Packet für URLs
+\usepackage{url}
+
+% Typografisch korrekte Abkürzung von "z.B."
+\usepackage{xspace}
+\newcommand{\zB}{\mbox{z.\,B.}\xspace}
+
+% Daten
+\title{Titel}
+\newcommand{\thesubtitle}{Untertitel}
+\subtitle{\thesubtitle}
+\author{Vorname Nachname}
+\date{Januar 2016}
+
+% Variablen
+\newcommand{\titleDocumentType}{Modul}
+\newcommand{\degree}{BSc. Studiengangbezeichnung}
+% Footer Text
+\newcommand{\footer}{\titleDocumentType, HSD, FB Medien, \degree{}, \theauthor, \thedate}
+
+% Koma-Script Kopf- und Fusszeilen Styling
+\usepackage[draft=false]{scrlayer-scrpage}
+\setkomafont{pagehead}{\footnotesize}
+\setkomafont{pagefoot}{\footnotesize}
+\ihead{\normalfont \textcolor{darkgray}{\thetitle}} % Kopfzeile links
+\chead{} % Kopfzeile zentriert
+\ohead{\normalfont \textcolor{darkgray}{Seite \normalsize\thepage}} % Kopfzeile rechts
+\ifoot{\normalfont \textcolor{darkgray}{\footer}} % Fusszeile links
+\cfoot{} % Fusszeile zentriert
+\ofoot{} % Fusszeile rechts
+
+
+
+
+\begin{document}
+
+\include{_Deckblatt}
+
+\include{_Eidesstattliche_Erklaerung}
+
+\include{_Zusammenfassung}
+
+\tableofcontents
+
+\include{_Einleitung}
+
+\include{_Inhalt}
+
+\include{_Fazit}
+
+\include{_Abkuerzungsverzeichnis}
+
+\include{_Quellenverzeichnis}
+
+\include{_Anhang}
+
+\end{document}
